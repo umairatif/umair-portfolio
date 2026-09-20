@@ -64,11 +64,10 @@ export const Footer = () => {
                   href={github}
                   target="_blank"
                   rel="noreferrer noopener"
-                  className="inline-flex items-center gap-2.5 px-3.5 py-2 rounded-lg bg-card-bg border border-ink-line text-xs font-mono font-semibold text-text-main hover:text-brand-primary hover:border-brand-primary transition-all"
-                  aria-label="Umair Atif on GitHub — Umair-eng-dev"
+                  className="w-10 h-10 rounded-full bg-card-bg border border-ink-line flex items-center justify-center text-ink-muted hover:text-text-main hover:border-brand-primary transition-all"
+                  aria-label="Umair Atif on GitHub (opens in new tab)"
                 >
                   <GithubIcon size={16} aria-hidden="true" />
-                  <span>Umair-eng-dev</span>
                 </a>
               )}
             </div>

@@ -41,9 +41,8 @@ export const Hero = () => {
 
           <div className="social-rail" aria-label="Profile links">
             {github && (
-              <a href={github} target="_blank" rel="noreferrer noopener" className="hero-github-btn">
-                <GithubIcon size={16} aria-hidden="true" />
-                <span>GitHub / <strong>Umair-eng-dev</strong></span>
+              <a href={github} target="_blank" rel="noreferrer noopener">
+                <GithubIcon size={16} aria-hidden="true" /> GitHub
               </a>
             )}
             <a href={`mailto:${site.email}`}>
