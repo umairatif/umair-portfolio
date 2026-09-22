@@ -7,7 +7,11 @@ import { site, SITE_URL } from '../site.config.js';
  * We deliberately don't pull in react-helmet-async for a five-page site —
  * it's a real dependency with its own context provider for something that's
  * ~40 lines of direct DOM work. This runs synchronously on route change,
- * before paint, so crawlers and the tab title never show stale metadata.
+ * before paint, so crawlers and share metadata never show stale values.
+ *
+ * Tab-title ownership: this hook only manages meta/OG/JSON-LD. The browser
+ * tab title lives in App.jsx, which flips the static "Portfolio" title to
+ * the current page name on navigation.
  */
 
 function setMeta(attr, key, content) {
@@ -48,7 +52,9 @@ function setJsonLd(id, data) {
 
 /**
  * @param {Object} opts
- * @param {string} opts.title - Page title, WITHOUT the site suffix (added here).
+ * @param {string} opts.title - Page title, WITHOUT the site suffix. Shown
+ *   as-is in the tab after an in-app navigation; the site name is appended
+ *   only to shared (OG/Twitter) metadata.
  * @param {string} opts.description - 150–160 char meta description.
  * @param {string} [opts.path] - Route path for canonical + og:url, e.g. '/projects/vibecoder'.
  * @param {string} [opts.image] - Absolute or root-relative OG image path.
@@ -57,8 +63,7 @@ function setJsonLd(id, data) {
  */
 export function useSeo({ title, description, path = '/', image = '/og-image.png', type = 'website', jsonLd }) {
   useEffect(() => {
-    const fullTitle = title ? `${title} · ${site.name}` : `${site.name} — ${site.tagline}`;
-    document.title = fullTitle;
+    const shareTitle = title ? `${title} · ${site.name}` : `${site.name} — ${site.tagline}`;
 
     const canonical = `${SITE_URL}${path}`;
     const absImage = image.startsWith('http') ? image : `${SITE_URL}${image}`;
@@ -67,7 +72,7 @@ export function useSeo({ title, description, path = '/', image = '/og-image.png'
     setLink('canonical', canonical);
 
     setMeta('property', 'og:type', type);
-    setMeta('property', 'og:title', fullTitle);
+    setMeta('property', 'og:title', shareTitle);
     setMeta('property', 'og:description', description);
     setMeta('property', 'og:url', canonical);
     setMeta('property', 'og:image', absImage);
@@ -75,7 +80,7 @@ export function useSeo({ title, description, path = '/', image = '/og-image.png'
 
     setMeta('name', 'twitter:card', 'summary_large_image');
     setMeta('name', 'twitter:url', canonical);
-    setMeta('name', 'twitter:title', fullTitle);
+    setMeta('name', 'twitter:title', shareTitle);
     setMeta('name', 'twitter:description', description);
     setMeta('name', 'twitter:image', absImage);
 

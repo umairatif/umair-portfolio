@@ -12,7 +12,7 @@ import { faq } from '../data/content.js';
 
 export const Home = () => {
   useSeo({
-    title: null, // homepage uses the bare site title, set inside useSeo
+    title: 'Home',
     description:
       "Umair Atif is a full-stack developer in Lahore, Pakistan building AI-integrated SaaS products, backend systems and cloud infrastructure with React, NestJS and AWS.",
     path: '/',
