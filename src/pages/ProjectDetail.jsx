@@ -51,7 +51,7 @@ export const ProjectDetail = () => {
 
   return (
     <main id="main">
-      <nav aria-label="Breadcrumb" className="max-w-[1280px] mx-auto px-6 md:px-11 pt-8 text-xs text-text-muted">
+      <nav aria-label="Breadcrumb" className="route-breadcrumb">
         <ol className="flex items-center gap-2 list-none p-0 m-0 flex-wrap">
           <li><Link to="/" className="hover:text-brand-primary">Home</Link></li>
           <li aria-hidden="true">/</li>
@@ -62,7 +62,7 @@ export const ProjectDetail = () => {
       </nav>
 
       {/* Header */}
-      <header className="section-wrap pb-10">
+      <header className="section-wrap route-page-header pb-10">
         <Link to="/projects" className="text-link mb-6 inline-flex">
           <ArrowLeft size={14} aria-hidden="true" /> All projects
         </Link>
@@ -75,10 +75,10 @@ export const ProjectDetail = () => {
               <span className="text-[11px] font-mono text-text-muted">· {project.year}</span>
               <span className="text-[11px] font-mono text-text-muted">· {project.status}</span>
             </div>
-            <h1 className="font-heading font-black text-text-main text-3xl md:text-5xl tracking-tight leading-tight max-w-3xl">
+            <h1 className="route-page-title route-page-title--detail">
               {project.title}
             </h1>
-            <p className="text-text-muted text-base leading-relaxed max-w-2xl mt-4">
+            <p className="route-page-intro route-page-intro--detail">
               {project.summary}
             </p>
           </div>
@@ -95,7 +95,7 @@ export const ProjectDetail = () => {
         </div>
       </header>
 
-      <div className="section-wrap pt-0 grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <div className="section-wrap route-page-content pt-0 grid grid-cols-1 lg:grid-cols-12 gap-12">
         {/* Main column */}
         <article className="lg:col-span-8 space-y-14">
           <section aria-labelledby="problem-heading">
@@ -223,7 +223,7 @@ export const ProjectDetail = () => {
         </aside>
       </div>
 
-      <div className="section-wrap pt-0">
+      <div className="section-wrap route-page-content pt-0">
         <ProjectNav current={project} />
       </div>
     </main>

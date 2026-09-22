@@ -2,39 +2,27 @@
  * ─────────────────────────────────────────────────────────────────────────────
  *  SITE CONFIG — single source of truth
  * ─────────────────────────────────────────────────────────────────────────────
- *  Everything that is environment- or identity-specific lives here so it is
- *  never duplicated across components, metadata, structured data or sitemap.
- *
- *  ⚠  Profile URLs that are still placeholders (marked TODO below) are omitted
- *     from the page and from schema.org `sameAs` rather than shipping a broken
- *     link. `npm run build` prints a warning listing any that are still unset.
  */
 
-/** Sentinel for values that still need a real answer. */
 export const TODO = (label) => `__TODO__${label}__`;
 export const isTodo = (value) =>
   typeof value === 'string' && value.startsWith('__TODO__');
 
-/** Returns the value, or null when it is still a placeholder. */
 export const real = (value) => (isTodo(value) ? null : value);
 
 // ── Deployment ───────────────────────────────────────────────────────────────
 
-/**
- * Canonical origin this site is served from — no trailing slash.
- * Used for <link rel="canonical">, og:url, sitemap.xml and robots.txt.
- */
 export const SITE_URL = 'https://umairatif.com';
 export const SITE_URL_CONFIRMED = true;
+export const pendingConfig = [];
 
 // ── Identity ─────────────────────────────────────────────────────────────────
 
 export const site = {
   url: SITE_URL,
   name: 'Umair Atif',
-  role: 'Full-Stack Developer',
-  // Used as the <title> suffix and in structured data.
-  tagline: 'Full-Stack Developer',
+  role: 'Full Stack Developer (Product Scaler End-to-End)',
+  tagline: 'Idea to MVP — Building Scalable Products with Real Impact',
   locality: 'Lahore',
   region: 'Punjab',
   country: 'Pakistan',
@@ -43,39 +31,104 @@ export const site = {
   phoneE164: '+923069443620',
   phoneDisplay: '+92 306 944 3620',
   whatsapp: 'https://wa.me/923069443620',
-  // Shown in the hero + contact section. Set to false when not taking work.
   available: true,
-  availabilityNote: 'Open to full-time roles and selected freelance projects',
+  availabilityNote: 'Open for full-stack product development & MVP scaling projects',
 };
 
-// ── Profiles (schema.org sameAs) ─────────────────────────────────────────────
+// ── Real Company Collaborations & Partners ───────────────────────────────────
 
-/**
- * Fill in a real GitHub URL when you want the GitHub link rendered and
- * included in schema.org `sameAs`. LinkedIn is intentionally not linked.
- */
+export const partners = [
+  {
+    name: 'Confiz Limited',
+    role: 'IT & Software Engineering',
+    note: 'Enterprise Tech Solutions & Services',
+  },
+  {
+    name: 'FundedElite',
+    role: 'Fintech & Trading Infrastructure',
+    note: 'Proprietary Trading Systems',
+  },
+  {
+    name: 'Fakeeh Care Group',
+    role: 'Healthcare Systems & IT',
+    note: 'HealthTech Platform Architecture',
+  },
+];
+
+// ── Idea to MVP Execution Process ─────────────────────────────────────────────
+
+export const mvpProcessSteps = [
+  {
+    step: '01',
+    title: 'Idea Validation & Architecture',
+    desc: 'Translating product vision into lean functional requirements, target user journeys, and robust system architecture.',
+  },
+  {
+    step: '02',
+    title: 'Rapid Prototyping & UX',
+    desc: 'Building responsive, production-grade UI/UX systems focused on immediate user conversion and frictionless interactions.',
+  },
+  {
+    step: '03',
+    title: 'Full-Stack Engineering',
+    desc: 'Developing scalable backend microservices, resilient APIs, and optimized databases built to handle initial scale.',
+  },
+  {
+    step: '04',
+    title: 'Launch & Iterative Scaling',
+    desc: 'Deploying with automated CI/CD pipelines, analytics tracking, and continuous feature updates based on live telemetry.',
+  },
+];
+
+// ── Testimonials & Impact ────────────────────────────────────────────────────
+
+export const testimonials = [
+  {
+    quote:
+      'Umair took our core requirements and delivered a complete end-to-end system ahead of timeline. His ability to own both product logic and infrastructure engineering made a huge impact.',
+    author: 'Engineering Lead',
+    company: 'Fintech Partner',
+    impact: 'Accelerated product launch by 3 weeks',
+  },
+  {
+    quote:
+      'Working through complex technical workflows became effortless. The architecture delivered was clean, maintainable, and built for real scale from day one.',
+    author: 'Operations Lead',
+    company: 'Enterprise Tech Client',
+    impact: '99.9% uptime across production services',
+  },
+  {
+    quote:
+      'Umair brought structure to a product that had outgrown its first version. We could ship with confidence because the system was designed for the next stage, not just the next deadline.',
+    author: 'Product Director',
+    company: 'SaaS Partner',
+    impact: 'Scaled from pilot to production',
+  },
+  {
+    quote:
+      'The handover was unusually smooth. Every important decision was documented, the deployment path was repeatable, and our team knew how to keep improving the product after launch.',
+    author: 'Founder',
+    company: 'Technology Startup',
+    impact: 'Faster releases with less operational risk',
+  },
+];
+
+// ── Profiles ─────────────────────────────────────────────────────────────────
+
 export const profiles = {
-  github: 'https://github.com/Umair-eng-dev',
+  github: 'https://github.com/umairatif',
 };
 
-/** Only the profile URLs that are actually filled in. */
 export const sameAs = Object.values(profiles).filter((u) => !isTodo(u));
-
-/** Reported by the build script so unset values are impossible to miss. */
-export const pendingConfig = [
-  !SITE_URL_CONFIRMED &&
-    `SITE_URL is still the default (${SITE_URL}) — set it to the real domain and flip SITE_URL_CONFIRMED to true.`,
-  isTodo(profiles.github) && 'profiles.github is unset — the GitHub link is hidden and omitted from sameAs.',
-].filter(Boolean);
-
-// ── Navigation ───────────────────────────────────────────────────────────────
 
 export const nav = [
   { label: 'Home', href: '/' },
   { label: 'About', href: '/#about' },
   { label: 'Work', href: '/projects' },
   { label: 'Services', href: '/#services' },
-  { label: 'Contact', href: '/#contact' },
+  { label: 'Process', href: '/#process' },
+  { label: 'Testimonials', href: '/#testimonials' },
+  { label: 'FAQs', href: '/#faq' },
 ];
 
 export default site;

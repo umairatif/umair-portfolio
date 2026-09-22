@@ -20,7 +20,7 @@ export const ProjectsIndex = () => {
 
   return (
     <main id="main">
-      <nav aria-label="Breadcrumb" className="max-w-[1280px] mx-auto px-6 md:px-11 pt-8 text-xs text-text-muted">
+      <nav aria-label="Breadcrumb" className="route-breadcrumb">
         <ol className="flex items-center gap-2 list-none p-0 m-0">
           <li><Link to="/" className="hover:text-brand-primary">Home</Link></li>
           <li aria-hidden="true">/</li>
@@ -28,18 +28,18 @@ export const ProjectsIndex = () => {
         </ol>
       </nav>
 
-      <header className="section-wrap pb-8">
+      <header className="section-wrap route-page-header pb-8">
         <p className="eyebrow">Case Studies</p>
-        <h1 className="font-heading font-black text-text-main text-4xl md:text-5xl tracking-tight leading-tight max-w-3xl">
+        <h1 className="route-page-title">
           Projects I've designed, built and shipped
         </h1>
-        <p className="text-text-muted text-base leading-relaxed max-w-2xl mt-5">
+        <p className="route-page-intro">
           Five systems in production or recently shipped, each written up as problem,
           solution, architecture and outcome — not just a list of technologies.
         </p>
       </header>
 
-      <section className="section-wrap pt-0" aria-label="All projects">
+      <section className="section-wrap route-page-content pt-0" aria-label="All projects">
         <div className="flex flex-col gap-5">
           {projects.map((project) => (
             <article

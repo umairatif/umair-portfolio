@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Mail } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Mail, Phone } from 'lucide-react';
 import { GithubIcon } from './icons/BrandIcons.jsx';
 import { site, profiles, real } from '../site.config.js';
 
@@ -14,9 +14,13 @@ export const Hero = () => {
     <section id="home" className="hero-section" aria-label="Introduction">
       <div className="hero-grid">
         <div className="hero-copy hero-enter hero-enter-1">
-          <p className="eyebrow"><i aria-hidden="true" /> Hello, I'm</p>
-          <h1>UMAIR <em>ATIF</em></h1>
-          <p className="role">{site.role.toUpperCase()}</p>
+          <p className="eyebrow">
+            <i aria-hidden="true" /> HELLO, I'M
+          </p>
+          <h1>
+            UMAIR <em>ATIF</em>
+          </h1>
+          <p className="role">{site.role ? site.role.toUpperCase() : 'FULL-STACK DEVELOPER'}</p>
           <span className="rule" aria-hidden="true" />
           <p className="intro">
             I build full-stack web products — backend, frontend and the AWS infrastructure
@@ -27,14 +31,19 @@ export const Hero = () => {
             <Link className="button solid" to="/projects">
               View case studies <ArrowRight size={16} aria-hidden="true" />
             </Link>
-            <a className="text-link" href="#about">About me <span aria-hidden="true">↗</span></a>
+            <Link className="text-link" to="/" state={{ scrollTo: 'about' }}>
+              About me <ArrowUpRight size={15} aria-hidden="true" />
+            </Link>
           </div>
+
           {site.available && (
             <div className="availability">
               <span className="availability-dot" aria-hidden="true" />
               <div>
-                <strong>Available for select projects</strong>
-                <small>Based in {site.locality}, {site.country} · Working worldwide</small>
+                <strong>AVAILABLE FOR SELECT PROJECTS</strong>
+                <small>
+                  Based in {site.locality}, {site.country} · Working worldwide
+                </small>
               </div>
             </div>
           )}
@@ -47,6 +56,9 @@ export const Hero = () => {
             )}
             <a href={`mailto:${site.email}`}>
               <Mail size={16} aria-hidden="true" /> Email
+            </a>
+            <a href={site.whatsapp} target="_blank" rel="noreferrer noopener">
+              <Phone size={16} aria-hidden="true" /> WhatsApp
             </a>
           </div>
         </div>

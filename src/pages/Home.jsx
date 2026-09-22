@@ -4,6 +4,7 @@ import { About } from '../components/About';
 import { FeaturedWork } from '../components/FeaturedWork';
 import { Services } from '../components/Services';
 import { Process } from '../components/Process';
+import { Testimonials } from '../components/Testimonials';
 import { Faq } from '../components/Faq';
 import { useSeo } from '../lib/useSeo.js';
 import { personSchema, websiteSchema, faqSchema } from '../lib/schema.js';
@@ -25,6 +26,7 @@ export const Home = () => {
       <FeaturedWork />
       <Services />
       <Process />
+      <Testimonials />
       <Faq />
     </main>
   );

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { services } from '../data/content.js';
 
 export const Services = () => {
@@ -18,29 +19,28 @@ export const Services = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-border-main/60 border border-border-main">
-          {services.map((service) => (
-            <article key={service.id} className="bg-bg-site p-7 md:p-9">
-              <span className="block font-mono text-xs text-brand-primary font-semibold mb-4">
-                {service.number}
-              </span>
-              <h3 className="font-heading font-bold text-text-main text-lg mb-3">
-                {service.title}
-              </h3>
-              <p className="text-sm text-text-muted leading-relaxed mb-5">
-                {service.body}
-              </p>
-              <ul className="flex flex-wrap gap-1.5" aria-label={`Technologies for ${service.title}`}>
-                {service.tags.map((tag) => (
-                  <li
-                    key={tag}
-                    className="px-2 py-1 text-[10px] font-mono font-medium bg-card-bg text-text-main border border-card-border rounded"
-                  >
-                    {tag}
-                  </li>
-                ))}
-              </ul>
-            </article>
+        <div className="flex flex-col border-t border-border-main">
+            {services.map((service) => (
+            <Link
+              to="/"
+              state={{ scrollTo: 'contact' }}
+              key={service.id} 
+              className="group flex flex-col md:flex-row md:items-center justify-between py-8 md:py-10 border-b border-border-main hover:bg-black/2 transition-colors duration-300 cursor-pointer"
+            >
+              <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-12 w-full">
+                <span className="font-mono text-xs md:text-sm text-brand-primary font-semibold whitespace-nowrap">
+                  // {service.number}/
+                </span>
+                <div>
+                  <h3 className="font-heading font-bold text-text-main text-xl md:text-2xl tracking-tight mb-2">
+                    {service.title}
+                  </h3>
+                  <p className="text-sm text-text-muted leading-relaxed md:max-w-xl">
+                    {service.body}
+                  </p>
+                </div>
+              </div>
+            </Link>
           ))}
         </div>
       </div>

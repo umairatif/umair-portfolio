@@ -11,7 +11,7 @@ export const NotFound = () => {
   });
 
   return (
-    <main id="main" className="section-wrap text-center py-32">
+    <main id="main" className="section-wrap route-not-found text-center">
       <p className="font-mono text-sm text-brand-primary font-semibold mb-3">404</p>
       <h1 className="font-heading font-black text-3xl md:text-4xl text-text-main mb-4">
         This page doesn't exist
